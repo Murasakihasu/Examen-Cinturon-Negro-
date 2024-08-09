@@ -11,7 +11,7 @@
 	<groupId>com.martinvictoriano</groupId>
 	<artifactId>ExamenFinal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>ExamenFinal</name>
 	<description>Examen Final Coding Dojo</description>
 	<url/>
