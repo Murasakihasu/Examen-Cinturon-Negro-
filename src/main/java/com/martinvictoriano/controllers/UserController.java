@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.martinvictoriano.models.LoginUser;
 import com.martinvictoriano.models.User;
+import com.martinvictoriano.services.TablaService;
 import com.martinvictoriano.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -21,10 +22,13 @@ import jakarta.validation.Valid;
 public class UserController {
 	@Autowired
 	private final UserService userService;
+	@Autowired
+	private final TablaService tablaService;
 	
 	//Constructor
-	public UserController(UserService userService){
+	public UserController(UserService userService, TablaService tablaService){
 		this.userService = userService;
+		this.tablaService = tablaService;
 		}
 	
 	//Show form for login and register
@@ -34,6 +38,7 @@ public class UserController {
 		return "login.jsp";
 		}
 		
+	
 	//Register data
 	@PostMapping("/register")
 	public String createNewUser(@Valid @ModelAttribute("user") User newUser,
@@ -70,14 +75,15 @@ public class UserController {
 			}
 		}
 	
+	
 	//home
 	@GetMapping("/home/{id}")
 	public String home(@PathVariable("id") Long id, Model model, HttpSession sesion) {
 		if(sesion.getAttribute("user_id") == null){
 			return "redirect:";
 		}
-		model.addAttribute("user", userService.getUserById(id));
-		//model.addAttribute("babies", babyService.allBabies());//
+		User user = userService.getUserById(id);
+		model.addAttribute("user", user);
 		return "home.jsp";
 	}
 	

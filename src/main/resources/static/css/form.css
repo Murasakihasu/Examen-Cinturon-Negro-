@@ -1,0 +1,25 @@
+@charset "ISO-8859-1";
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	display: block;
+}
+
+.container1{
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+.container2{
+	display: flex;
+	justify-content: space-around;
+}
+
+.header{
+	display: flex;
+	justify-content: space-between;
+}

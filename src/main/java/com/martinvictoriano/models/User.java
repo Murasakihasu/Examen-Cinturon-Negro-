@@ -5,15 +5,14 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -45,11 +44,8 @@ public class User {
 	private String confirmPassword;
 	
 	
-	//@ManyToMany(fetch= FetchType.LAZY)
-	//@JoinTable(name="users_babies", 
-		//		joinColumns = @JoinColumn(name="id_users"),
-			//	inverseJoinColumns = @JoinColumn(name="id_babies"))
-//	private List<Baby> babies;
+	@OneToMany(mappedBy="user", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Tabla> tablas; 
 	
 	
 	//Constructor
@@ -127,13 +123,15 @@ public class User {
 	}
 
 
-	//public List<Baby> getBabies() {
-	//	return babies;
-	//}
+	public List<Tabla> getTablas() {
+		return tablas;
+	}
 
 
-	//public void setBabies(List<Baby> babies) {
-	//	this.babies = babies;
-	//}
+	public void setTablas(List<Tabla> tablas) {
+		this.tablas = tablas;
+	}
+
+
 
 }

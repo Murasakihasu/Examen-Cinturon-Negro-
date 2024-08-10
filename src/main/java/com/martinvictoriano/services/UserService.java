@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.martinvictoriano.models.LoginUser;
+import com.martinvictoriano.models.Tabla;
 import com.martinvictoriano.models.User;
 import com.martinvictoriano.repositories.UserRepository;
 
@@ -35,6 +36,14 @@ public class UserService {
 		newUser.setPassword(cryptPassword);
 		return userRepository.save(newUser);
 		}
+	
+	//update an user list
+		 public User updateUser(User updatedUser) {
+			User existingUser = getUserById(updatedUser.getId());
+			existingUser.setTablas(updatedUser.getTablas());
+	     
+			return userRepository.save(existingUser);
+			}	
 	
 	//Find an user by id
 	public User getUserById(Long id) {
